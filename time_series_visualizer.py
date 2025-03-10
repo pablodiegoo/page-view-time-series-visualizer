@@ -32,13 +32,14 @@ def draw_bar_plot():
     df_bar['month'] = df_bar.index.month
     df_bar = df_bar.groupby(['year', 'month'])['value'].mean()
     df_bar = df_bar.unstack()
-    df_bar.columns = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    df_bar.columns = months
     
     # Draw bar plot
     fig = df_bar.plot(kind='bar', figsize=(12, 10), legend=True).figure
     plt.xlabel('Years')
     plt.ylabel('Average Page Views')
-    plt.legend(title='Months', labels=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
+    plt.legend(title='Months', labels=months)
     
     # Save image and return fig (don't change this part)
     fig.savefig('bar_plot.png')
